@@ -26,8 +26,9 @@ function App() {
   };
 
   const handleTaskKill = (index) => {
-    setTaskList(taskList.filter((item, i) => i !== index));
+    const temp = displayTask.filter((item, i) => !(i !== index));
     setDispalyTask(displayTask.filter((item, i) => i !== index));
+    setTaskList(taskList.filter((item) => !temp.includes(item)));
   };
 
   const handleCheckboxChecked = (index) => {
