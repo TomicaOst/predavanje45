@@ -34,13 +34,15 @@ function App() {
   };
 
   const handleShowTasksAll = () => {
-    setTaskList(taskList.filter((item) => item));
+    setTaskList(displayTask.filter((item) => item));
   };
   const handleShowTasksCompleted = () => {
+    setDispalyTask(taskList.filter((item) => item));
     setTaskList(taskList.filter((item) => item?.isCompleted === true));
   };
 
   const handleShowTasksUncompleted = () => {
+    setDispalyTask(taskList.filter((item) => item));
     setTaskList(taskList.filter((item) => item.isCompleted === false));
   };
 
@@ -68,7 +70,6 @@ function App() {
         handleShowTasksCompleted={handleShowTasksCompleted}
         handleShowTasksUncompleted={handleShowTasksUncompleted}
       />
-      {console.log(taskList)}
     </div>
   );
 }
