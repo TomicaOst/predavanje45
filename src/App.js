@@ -5,6 +5,7 @@ import { Tasks, TaskButtons } from "./components";
 function App() {
   const [task, setTask] = useState("");
   const [taskList, setTaskList] = useState([]);
+  const [displayTask, setDispalyTask] = useState([]);
 
   const handleOnChange = (event) => {
     setTask(event.target.value);
@@ -32,25 +33,25 @@ function App() {
     );
   };
 
-  const handleShowTasksAll = (event) => {
+  const handleShowTasksAll = () => {
     setTaskList(taskList.filter((item) => item));
   };
-  const handleShowTasksCompleted = (event) => {
-    setTaskList(taskList.filter((item) => (item.isCompleted ? item : null)));
+  const handleShowTasksCompleted = () => {
+    setTaskList(taskList.filter((item) => item?.isCompleted === true));
   };
 
-  const handleShowTasksUncompleted = (event) => {
-    setTaskList(taskList.filter((item) => (item.isCompleted ? null : true)));
+  const handleShowTasksUncompleted = () => {
+    setTaskList(taskList.filter((item) => item.isCompleted === false));
   };
 
   return (
     <div>
       <h1>My Tasks</h1>
-      {/* <TaskButtons
+      <TaskButtons
         handleShowTasksAll={handleShowTasksAll}
         handleShowTasksCompleted={handleShowTasksCompleted}
         handleShowTasksUncompleted={handleShowTasksUncompleted}
-      /> */}
+      />
       <form onSubmit={handleSubmit}>
         <label>
           <input type="text" value={task} onChange={handleOnChange}></input>
@@ -63,19 +64,11 @@ function App() {
         setTaskList={setTaskList}
         handleTaskKill={handleTaskKill}
         handleCheckboxChecked={handleCheckboxChecked}
+        handleShowTasksAll={handleShowTasksAll}
+        handleShowTasksCompleted={handleShowTasksCompleted}
+        handleShowTasksUncompleted={handleShowTasksUncompleted}
       />
       {console.log(taskList)}
-      {/* <ul>
-        {taskList.map((liTask, index) => {
-          return (
-            <li key={index}>
-              <input type="checkbox" value={liTask.isCompleted}></input>
-              <span>{liTask.description}</span>
-              <button onClick={() => handleTaskKill(index)}>Del</button>
-            </li>
-          );
-        })}
-      </ul> */}
     </div>
   );
 }

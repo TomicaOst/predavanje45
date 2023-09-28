@@ -9,13 +9,13 @@ const TaskButtons = ({
 }) => {
   return (
     <ButtonGroup aria-label="Basic example">
-      <Button variant="secondary" onClick={() => handleShowTasksAll}>
+      <Button variant="secondary" onClick={() => handleShowTasksAll()}>
         All
       </Button>
-      <Button variant="secondary" onClick={() => handleShowTasksCompleted}>
+      <Button variant="secondary" onClick={() => handleShowTasksCompleted()}>
         Completed
       </Button>
-      <Button variant="secondary" onClick={() => handleShowTasksUncompleted}>
+      <Button variant="secondary" onClick={() => handleShowTasksUncompleted()}>
         Uncompleted
       </Button>
     </ButtonGroup>
