@@ -1,9 +1,9 @@
 import React from "react";
 
-const Tasks = ({ taskList, handleTaskKill, handleCheckboxChecked }) => {
+const Tasks = ({ displayTask, handleTaskKill, handleCheckboxChecked }) => {
   return (
     <ul>
-      {taskList.map((liTask, index) => {
+      {displayTask.map((liTask, index) => {
         return (
           <li key={index}>
             <input
