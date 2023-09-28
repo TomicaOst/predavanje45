@@ -18,11 +18,16 @@ function App() {
       ...prevState,
       { isCompleted: false, description: task },
     ]);
+    setDispalyTask((prevState) => [
+      ...prevState,
+      { isCompleted: false, description: task },
+    ]);
     setTask("");
   };
 
   const handleTaskKill = (index) => {
     setTaskList(taskList.filter((item, i) => i !== index));
+    setDispalyTask(displayTask.filter((item, i) => i !== index));
   };
 
   const handleCheckboxChecked = (index) => {
@@ -31,19 +36,24 @@ function App() {
         i === index ? { ...item, isCompleted: !item.isCompleted } : item
       )
     );
+    setDispalyTask(
+      displayTask.map((item, i) =>
+        i === index ? { ...item, isCompleted: !item.isCompleted } : item
+      )
+    );
   };
 
   const handleShowTasksAll = () => {
-    setTaskList(displayTask.filter((item) => item));
+    setDispalyTask(taskList.filter((item) => item));
   };
   const handleShowTasksCompleted = () => {
-    setDispalyTask(taskList.filter((item) => item));
-    setTaskList(taskList.filter((item) => item?.isCompleted === true));
+    setDispalyTask(taskList.filter((item) => item.isCompleted === true));
+    // setTaskList(taskList.filter((item) => item.isCompleted === true));
   };
 
   const handleShowTasksUncompleted = () => {
-    setDispalyTask(taskList.filter((item) => item));
-    setTaskList(taskList.filter((item) => item.isCompleted === false));
+    setDispalyTask(taskList.filter((item) => item.isCompleted === false));
+    // setTaskList(taskList.filter((item) => item.isCompleted === false));
   };
 
   return (
@@ -62,13 +72,9 @@ function App() {
       </form>
 
       <Tasks
-        taskList={taskList}
-        setTaskList={setTaskList}
+        displayTask={displayTask}
         handleTaskKill={handleTaskKill}
         handleCheckboxChecked={handleCheckboxChecked}
-        handleShowTasksAll={handleShowTasksAll}
-        handleShowTasksCompleted={handleShowTasksCompleted}
-        handleShowTasksUncompleted={handleShowTasksUncompleted}
       />
     </div>
   );
