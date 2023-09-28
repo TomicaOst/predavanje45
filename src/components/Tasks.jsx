@@ -1,15 +1,16 @@
 import React from "react";
 
-const Tasks = ({ taskList, setTaskList }) => {
-  const handleTaskKill = (index) => {
-    setTaskList(taskList.filter((item, i) => i !== index));
-  };
+const Tasks = ({ taskList, handleTaskKill, handleCheckboxChecked }) => {
   return (
     <ul>
       {taskList.map((liTask, index) => {
         return (
           <li key={index}>
-            <input type="checkbox" value={liTask.isCompleted}></input>
+            <input
+              type="checkbox"
+              checked={liTask.isCompleted}
+              onChange={() => handleCheckboxChecked(index)}
+            ></input>
             <span>{liTask.description}</span>
             <button onClick={() => handleTaskKill(index)}>Del</button>
           </li>
